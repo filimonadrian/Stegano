@@ -74,6 +74,5 @@ dispozitie in schelet.
 
 Functia read_arg3_arg4 acceseza parametrii dati programului si ii pune in 
 registre(ma ajuta la 2 taskuri).
-Functia print_matrix foloseste functia deja exista print_image, dar push-urile
-sunt date direct aici, la fel si curatarea stivei. Este un mod simplu de la 
-a scrie imaginea. 
+Functia print_matrix foloseste functia deja existenta print_image, dar 
+push-urile sunt date direct aici, la fel si curatarea stivei.
