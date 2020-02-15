@@ -1,0 +1,79 @@
+
+Implementare
+
+=====================================Task1=====================================
+
+Pentru acest task am folosit 4 functii: 
+- pentru a cauta cuvantul "revient" pe o linie data
+- pentru a face xor cu o cheie pe toata matricea
+- pentru a scrie informatiile necesare
+- o functie care le imbina pe toate pentru a rezolva taskul
+
+find_word_in_message:  primeste ca parametru prin intermediul registrului
+eax adresa primului element de pe o anumita linie din matrice. Cuvantul este 
+declarat in zona de date ca un sir(pe forum scria ca avem voie sa facem asta
+pentru taskul 1). Am scazut din dimensiunea liniei lungimea sirului(in caz
+ca nu gaseste cuvantul si mai sunt 5 caractere, este evident ca nu il va gasi
+pentru ca nu ar mai fi suficiente caractere sa incapa cuvantul). Apoi plec 
+de la primul caracter de pe linie si compar cu sirul dat, daca nu se potrivesc
+merg la al doilea si tot asa. Daca se gaseste undeva o potrivire, se va folosi
+edx pentru a compara in continuare literele. 
+
+print_task_1: primeste adresa primului element de pe linia la care s-a gasit
+mesajul. Afiseaza caracter cu caracter mesajul pana la gasirea lui 0, apoi
+afiseaza cheia si linia. Este apelata in main, dupa apelarea functiei 
+task_1_rez
+
+xor_matrix: xoreaza intreaga matrice cu o cheie data
+
+task_1_rez: pleaca de la cheia 0, xoreaza matricea si cauta pe fiecare linie
+cuvantul "revient". Daca gaseste cuvantul inseamna ca la linia respectiva 
+se afla mesajul si cheia este ultima folosita. Cheia si linia sunt pastrate in
+registre. Aceasta functie este folosita si la rezolvarea taskului 2, de aceea
+nu afiseaza nimic.
+
+====================================Task2======================================
+
+new_key: calculeaza noua cheie implementand formula data in cerinta
+
+put_message_in_matrix: pune pe urmatoarea linie fata de care s-a gasit mesajul
+un alt mesaj dat in cerinta(suprascrie).
+
+=====================================Task3=====================================
+
+morse_encrypt: compara fiecare caracter din mesaj cu litere si cifre si pune
+in matrice caracterele codului morse pentru acesta.
+
+=====================================Task4=====================================
+
+lsb_encrypt: edi va fi pe rand fiecare bit dintr-un octet pentru a verifica
+ce biti activi sunt intr-o litera din cuvantul dat. In functie de asta setez
+LSB(1 sau 0) pentru fiecare element din matrice incepand de la indexul dat.
+Cand ajung la \0, iau separat urmatorii 8 pixeli si le fac LSB 0, apoi ies. 
+
+=====================================Task5=====================================
+
+lsb_decrypt: edi va avea acelasi rol, masca, dar de data asta va fi doar pentru
+lsb: verific ce valoare are lsb-ul valorii din matrice si il pun in eax,
+formand caracterul respectiv. La 8 iteratii, scriu litera si merg mai departe.
+Daca intalnesc 8 LSB consecutivi, ma opresc.
+
+=====================================Task6=====================================
+
+La acest task totul este scris in main. Parcurg matricea invers, doar pe
+interior(adica exclud primul/ultimul rand si prima/ultima coloana). Pentru
+valorile pe care iterez calculez valoarea de blur si o pun pe stiva. Dupa
+acest pas, valoarea din varful stivei este valoarea de blur pentru al doilea
+element de pe a doua linie, TOS - 1 al treilea element si tot asa, excluzand 
+prima si ultima coloana, prima si ultima linie. Modific matricea originala 
+punand in aceasta valorile calculate mai sus. Parcurg tot pe interior, dar in 
+mod firesc(de la cap la coada) si suprascriu valorile cu cele pe care le-am
+calculat.(parcurg matricea de la linia 2 pana la linia [img_height] - 1, de la 
+1 pana la [img_width] - 2). La sfarsit, folosesc functia de afisare pusa la
+dispozitie in schelet. 
+
+Functia read_arg3_arg4 acceseza parametrii dati programului si ii pune in 
+registre(ma ajuta la 2 taskuri).
+Functia print_matrix foloseste functia deja exista print_image, dar push-urile
+sunt date direct aici, la fel si curatarea stivei. Este un mod simplu de la 
+a scrie imaginea. 
